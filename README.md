@@ -9,7 +9,7 @@
 
 A 100% open source modern, accessible, and multilingual website template designed specifically for government portals. Built with pure HTML, CSS, and JavaScript, this template provides a solid foundation for governments to quickly deploy citizen-centric service portals.
 
-[Live Demo](https://pasan93.github.io/opengovui/)
+[Live Demo](https://govui.openxs.org)
 
 ## 🌟 Features
 

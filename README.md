@@ -114,4 +114,4 @@ For support, please open an issue in the [GitHub repository](https://github.com/
 
 ---
 
-Made with ❤️ for better government services
+Made with ❤️ in 🇱🇰 for better government services

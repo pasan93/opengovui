@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="meta.title">Government of Norvalis - Official Portal</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+Sinhala:wght@400;500;700&family=Noto+Sans+Tamil:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6.5.1 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <a href="#main-content" class="skip-to-main" data-i18n="accessibility.skipToMain">Skip to main content</a>
+
+    <header class="gov-header">
+        <div class="top-banner">
+            <div class="container">
+                <div class="utility-nav">
+                    <div class="language-selector">
+                        <a href="#" lang="si">සිංහල</a>
+                        <a href="#" lang="ta">தமிழ்</a>
+                        <a href="#" lang="en" class="active">English</a>
+                    </div>
+
+                    <div class="utility-links">
+                        <a href="#" data-i18n="header.contact">Contact</a>
+                        <a href="#" class="login-link">
+                            <i class="fa-solid fa-user"></i>
+                            <span data-i18n="header.login">Login</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-header">
+            <div class="container">
+                <div class="header-content">
+                    <a href="/" class="logo">
+                        <img src="images/govt-logo.png" width="60" height="60" alt="Norvalis Government Logo">
+                        <span data-i18n="header.govtName">Government of Norvalis</span>
+                    </a>
+
+                    <div class="header-search">
+                        <form class="search-wrapper">
+                            <input type="search" 
+                                   id="search-input" 
+                                   data-i18n="search.placeholder" 
+                                   data-i18n-attr="placeholder" 
+                                   placeholder="Search">
+                            <button type="submit">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <span data-i18n="search.button">Search</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" role="main">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 data-i18n="hero.title">Access government services and information in one place</h1>
+
+                    <div class="featured-services">
+                        <h2 data-i18n="hero.subtitle">Most requested services</h2>
+
+                        <div class="services-grid">
+                            <a href="#" class="service-card">
+                                <div class="service-icon">
+                                    <i class="fa-solid fa-id-card"></i>
+                                </div>
+                                <h3 data-i18n="services.nationalId.title">National ID</h3>
+                                <p data-i18n="services.nationalId.description">Apply for or renew your National Identity Card</p>
+                            </a>
+
+                            <a href="#" class="service-card">
+                                <div class="service-icon">
+                                    <i class="fa-solid fa-passport"></i>
+                                </div>
+                                <h3 data-i18n="services.passport.title">Passport</h3>
+                                <p data-i18n="services.passport.description">Apply for or renew your passport</p>
+                            </a>
+
+                            <a href="#" class="service-card">
+                                <div class="service-icon">
+                                    <i class="fa-solid fa-car"></i>
+                                </div>
+                                <h3 data-i18n="services.vehicleReg.title">Vehicle Registration</h3>
+                                <p data-i18n="services.vehicleReg.description">Register or transfer vehicle ownership</p>
+                            </a>
+
+                            <a href="#" class="service-card">
+                                <div class="service-icon">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                </div>
+                                <h3 data-i18n="services.education.title">Education</h3>
+                                <p data-i18n="services.education.description">Access educational services</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="topics-section">
+            <div class="container">
+                <h2 data-i18n="categories.title">Browse by category</h2>
+
+                <div class="topics-grid">
+                    <a href="#" class="topic-card">
+                        <h3>
+                            <i class="fa-solid fa-heart-pulse"></i>
+                            <span data-i18n="categories.health.title">Health & Care</span>
+                        </h3>
+                        <p data-i18n="categories.health.description">Healthcare, insurance, elderly care</p>
+                    </a>
+
+                    <a href="#" class="topic-card">
+                        <h3>
+                            <i class="fa-solid fa-briefcase"></i>
+                            <span data-i18n="categories.business.title">Business</span>
+                        </h3>
+                        <p data-i18n="categories.business.description">Registration, licenses, taxes</p>
+                    </a>
+
+                    <a href="#" class="topic-card">
+                        <h3>
+                            <i class="fa-solid fa-house"></i>
+                            <span data-i18n="categories.housing.title">Housing</span>
+                        </h3>
+                        <p data-i18n="categories.housing.description">Property, utilities, local services</p>
+                    </a>
+
+                    <a href="#" class="topic-card">
+                        <h3>
+                            <i class="fa-solid fa-plane"></i>
+                            <span data-i18n="categories.immigration.title">Immigration</span>
+                        </h3>
+                        <p data-i18n="categories.immigration.description">Visas, citizenship, work permits</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="updates-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-i18n="updates.title">Government Updates</h2>
+                    <a href="#" class="view-all" data-i18n="updates.viewAll">View all updates</a>
+                </div>
+                <div class="updates-grid">
+                    <!-- Updates will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="gov-footer">
+        <div class="container">
+            <div class="footer-sections">
+                <div class="footer-primary">
+                    <div class="footer-brand">
+                        <img src="images/govt-logo.png" width="50" height="50" alt="Norvalis Government Logo">
+                        <span data-i18n="header.govtName">Government of Norvalis</span>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <i class="fa-brands fa-square-x-twitter"></i>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" aria-label="YouTube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-links-container">
+                    <div class="footer-col">
+                        <h4 data-i18n="footer.quickLinks.title">Quick Links</h4>
+                        <ul>
+                            <li><a href="#" data-i18n="footer.quickLinks.aboutSL">About Norvalis</a></li>
+                            <li><a href="#" data-i18n="footer.quickLinks.gazette">Government Gazette</a></li>
+                            <li><a href="#" data-i18n="footer.quickLinks.parliament">Parliament</a></li>
+                            <li><a href="#" data-i18n="footer.quickLinks.departments">Departments</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h4 data-i18n="footer.help.title">Help & Support</h4>
+                        <ul>
+                            <li><a href="#" data-i18n="footer.help.contact">Contact Us</a></li>
+                            <li><a href="#" data-i18n="footer.help.faq">FAQs</a></li>
+                            <li><a href="#" data-i18n="footer.help.siteMap">Site Map</a></li>
+                            <li><a href="#" data-i18n="footer.help.accessibility">Accessibility</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h4 data-i18n="footer.legal.title">Legal</h4>
+                        <ul>
+                            <li><a href="#" data-i18n="footer.legal.privacy">Privacy Policy</a></li>
+                            <li><a href="#" data-i18n="footer.legal.terms">Terms of Use</a></li>
+                            <li><a href="#" data-i18n="footer.legal.copyright">Copyright</a></li>
+                            <li><a href="#" data-i18n="footer.legal.disclaimer">Disclaimer</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p data-i18n="footer.copyright">© 2024 Government of Norvalis. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/i18n.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

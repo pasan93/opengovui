@@ -1,9 +1,10 @@
-# OpenGovUI
+<img width="1426" alt="image" src="https://github.com/user-attachments/assets/a4733903-498f-4edb-9cdd-cb10da148f02"># OpenGovUI
 
 ![Licence](https://img.shields.io/badge/licence-MIT-blue.svg)
 ![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
 
-![Uploading image.png…]()
+<img width="1399" alt="image" src="https://github.com/user-attachments/assets/16597505-da85-4ffd-8ddc-6b598f2afa2b">
+
 
 
 A 100% open source modern, accessible, and multilingual website template designed specifically for government portals. Built with pure HTML, CSS, and JavaScript, this template provides a solid foundation for governments to quickly deploy citizen-centric service portals.

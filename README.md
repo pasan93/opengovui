@@ -31,7 +31,7 @@ A 100% open source modern, accessible, and multilingual website template designe
 
 ### 🎨 Design Features
 - Clean, professional government aesthetic
-- FontAwesome 6.5.1 icons
+- FontAwesome 6.5.1 icons (CDN hosted)
 - Service cards with intuitive icons
 - Grid-based layouts for services and topics
 - Social media integration
@@ -98,7 +98,7 @@ The template uses a straightforward i18n system:
 
 ### Styling
 - Edit `styles.css` to match your government's brand colours and styling preferences
-- FontAwesome 6.5.1 is included for icons
+- FontAwesome 6.5.1 is included for icons (CDN hosted)
 
 ## 📄 Licence
 

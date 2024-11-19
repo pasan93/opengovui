@@ -102,7 +102,7 @@ The template uses a straightforward i18n system:
 
 ## 📄 Licence
 
-This project is licensed under the MIT Licence - see the [LICENCE](LICENCE) file for details.
+This project is licensed under the MIT Licence - see the [LICENCE](LICENSE) file for details.
 
 ## 🤝 Contributing
 

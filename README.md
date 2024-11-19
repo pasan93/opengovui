@@ -3,6 +3,9 @@
 ![Licence](https://img.shields.io/badge/licence-MIT-blue.svg)
 ![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
 
+![Uploading image.png…]()
+
+
 A 100% open source modern, accessible, and multilingual website template designed specifically for government portals. Built with pure HTML, CSS, and JavaScript, this template provides a solid foundation for governments to quickly deploy citizen-centric service portals.
 
 [Live Demo](https://pasan93.github.io/opengovui/)

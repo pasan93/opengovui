@@ -1,4 +1,4 @@
-<img width="1426" alt="image" src="https://github.com/user-attachments/assets/a4733903-498f-4edb-9cdd-cb10da148f02"># OpenGovUI
+# OpenGovUI
 
 ![Licence](https://img.shields.io/badge/licence-MIT-blue.svg)
 ![Version](https://img.shields.io/badge/version-1.0.0-green.svg)

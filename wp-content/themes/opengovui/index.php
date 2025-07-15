@@ -19,11 +19,16 @@
         <div class="top-banner">
             <div class="container">
                 <div class="utility-nav">
-                    <div class="language-selector">
-                        <a href="#" lang="si">සිංහල</a>
-                        <a href="#" lang="ta">தமிழ்</a>
-                        <a href="#" lang="en" class="active">English</a>
-                    </div>
+                    <?php if (function_exists('opengovui_language_switcher')): ?>
+                        <?php opengovui_language_switcher(); ?>
+                    <?php else: ?>
+                        <!-- Fallback language selector for when Polylang is not active -->
+                        <div class="language-selector">
+                            <a href="#" lang="si" data-lang="si">🇱🇰 සිංහල</a>
+                            <a href="#" lang="ta" data-lang="ta">🇱🇰 தமிழ்</a>
+                            <a href="#" lang="en" data-lang="en" class="active">🇬🇧 English</a>
+                        </div>
+                    <?php endif; ?>
 
                     <div class="utility-links">
                         <a href="#" data-i18n="header.contact">Contact</a>
@@ -75,9 +80,8 @@
 
                         <div class="services-grid">
                             <?php
-                            // Get featured services from WordPress
-                            $services = get_posts(array(
-                                'post_type' => 'gov_service',
+                            // Get featured services in current language
+                            $services = opengovui_get_posts_in_language('gov_service', array(
                                 'posts_per_page' => 4,
                                 'meta_key' => 'featured',
                                 'meta_value' => '1'
@@ -134,14 +138,13 @@
 
                 <div class="topics-grid">
                     <?php
-                    // Get service categories
-                    $categories = get_posts(array(
-                        'post_type' => 'service_category',
+                    // Get service categories in current language
+                    $categories = opengovui_get_posts_in_language('service_category', array(
                         'posts_per_page' => 4
                     ));
                     
                     if ($categories): foreach($categories as $category): ?>
-                        <a href="#" class="topic-card">
+                        <a href="<?php echo get_permalink($category->ID); ?>" class="topic-card">
                             <h3>
                                 <i class="<?php echo get_post_meta($category->ID, 'category_icon', true); ?>"></i>
                                 <span><?php echo $category->post_title; ?></span>
@@ -149,7 +152,7 @@
                             <p><?php echo $category->post_excerpt; ?></p>
                         </a>
                     <?php endforeach; else: ?>
-                        <!-- Default categories -->
+                        <!-- Default categories if none configured -->
                         <a href="#" class="topic-card">
                             <h3>
                                 <i class="fa-solid fa-heart-pulse"></i>
@@ -191,9 +194,8 @@
                 </div>
                 <div class="updates-grid">
                     <?php
-                    // Get government updates
-                    $updates = get_posts(array(
-                        'post_type' => 'gov_update',
+                    // Get government updates in current language
+                    $updates = opengovui_get_posts_in_language('gov_update', array(
                         'posts_per_page' => 3
                     ));
                     
@@ -201,10 +203,10 @@
                         <article class="update-card">
                             <h3><a href="<?php echo get_permalink($update->ID); ?>"><?php echo $update->post_title; ?></a></h3>
                             <p><?php echo $update->post_excerpt; ?></p>
-                            <time><?php echo get_the_date('', $update->ID); ?></time>
+                            <time datetime="<?php echo get_the_date('c', $update->ID); ?>"><?php echo get_the_date('', $update->ID); ?></time>
                         </article>
                     <?php endforeach; else: ?>
-                        <!-- Default content -->
+                        <!-- Default content when no updates available -->
                         <p>No updates available.</p>
                     <?php endif; ?>
                 </div>
@@ -276,9 +278,6 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="<?php echo get_template_directory_uri(); ?>/../../../js/i18n.js"></script>
-    <script src="<?php echo get_template_directory_uri(); ?>/../../../js/script.js"></script>
     <?php wp_footer(); ?>
 </body>
 </html> 

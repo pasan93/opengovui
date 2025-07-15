@@ -94,3 +94,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php'; 
+
+// define('CLAUDE_API_KEY', 'your-api-key-here'); // Add your Claude API key here 

@@ -96,27 +96,43 @@ body {
 .language-selector {
     display: flex;
     gap: var(--spacing-xs);
+    align-items: center;
 }
 
 .language-selector a {
     color: var(--white);
     text-decoration: none;
-    padding: 4px 8px;
+    padding: 6px 12px;
     font-size: 0.875rem;
     opacity: 0.9;
     border-radius: var(--radius-sm);
     transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    font-weight: 500;
 }
 
 .language-selector a.active {
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.25);
     opacity: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .language-selector a:hover {
     opacity: 1;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-1px);
 }
+
+.language-selector img {
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    vertical-align: middle;
+}
+
+/* Polylang specific styles */
 
 /* Utility Links */
 .utility-links {

@@ -376,3 +376,184 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
+
+// WordPress Integration
+class WordPressIntegration {
+    constructor() {
+        this.wpApiBase = window.location.origin + '/wp-json/opengovui/v1';
+        this.useWordPress = false;
+        this.init();
+    }
+
+    async init() {
+        await this.checkWordPressAvailability();
+        if (this.useWordPress) {
+            await this.loadWordPressContent();
+        }
+    }
+
+    async checkWordPressAvailability() {
+        try {
+            const response = await fetch(this.wpApiBase + '/featured-services');
+            if (response.ok) {
+                this.useWordPress = true;
+                console.log('WordPress integration available');
+            }
+        } catch (error) {
+            console.log('WordPress not available, using static content');
+        }
+    }
+
+    async loadWordPressContent() {
+        try {
+            await Promise.all([
+                this.loadFeaturedServices(),
+                this.loadCategories(),
+                this.loadWordPressUpdates()
+            ]);
+        } catch (error) {
+            console.error('Error loading WordPress content:', error);
+        }
+    }
+
+    async loadFeaturedServices() {
+        try {
+            const response = await fetch(this.wpApiBase + '/featured-services');
+            const services = await response.json();
+            
+            const servicesGrid = document.querySelector('.services-grid');
+            if (servicesGrid && services.length > 0) {
+                servicesGrid.innerHTML = '';
+                
+                services.forEach(service => {
+                    const serviceCard = this.createServiceCard(service);
+                    servicesGrid.appendChild(serviceCard);
+                });
+            }
+        } catch (error) {
+            console.error('Error loading featured services:', error);
+        }
+    }
+
+    async loadCategories() {
+        try {
+            const response = await fetch(this.wpApiBase + '/categories');
+            const categories = await response.json();
+            
+            const topicsGrid = document.querySelector('.topics-grid');
+            if (topicsGrid && categories.length > 0) {
+                topicsGrid.innerHTML = '';
+                
+                categories.forEach(category => {
+                    const categoryCard = this.createCategoryCard(category);
+                    topicsGrid.appendChild(categoryCard);
+                });
+            }
+        } catch (error) {
+            console.error('Error loading categories:', error);
+        }
+    }
+
+    async loadWordPressUpdates() {
+        try {
+            const response = await fetch(this.wpApiBase + '/updates?limit=3');
+            const updates = await response.json();
+            
+            const updatesGrid = document.querySelector('.updates-grid');
+            if (updatesGrid && updates.length > 0) {
+                updatesGrid.innerHTML = '';
+                
+                updates.forEach(update => {
+                    const updateCard = this.createUpdateCard(update);
+                    updatesGrid.appendChild(updateCard);
+                });
+            }
+        } catch (error) {
+            console.error('Error loading WordPress updates:', error);
+            // Fallback to static updates if WordPress fails
+            initializeUpdates();
+        }
+    }
+
+    createServiceCard(service) {
+        const card = document.createElement('a');
+        card.href = service.permalink || service.url || '#';
+        card.className = 'service-card';
+        
+        card.innerHTML = `
+            <div class="service-icon">
+                <i class="${service.icon || 'fa-solid fa-file'}"></i>
+            </div>
+            <h3>${service.title}</h3>
+            <p>${service.description}</p>
+        `;
+        
+        // Add animation events
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-4px)';
+            card.style.boxShadow = '0 8px 24px rgba(0,0,0,0.12)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+        });
+        
+        return card;
+    }
+
+    createCategoryCard(category) {
+        const card = document.createElement('a');
+        card.href = category.permalink || '#';
+        card.className = 'topic-card';
+        
+        if (category.color) {
+            card.style.borderColor = category.color;
+        }
+        
+        card.innerHTML = `
+            <h3>
+                <i class="${category.icon || 'fa-solid fa-folder'}"></i>
+                <span>${category.title}</span>
+            </h3>
+            <p>${category.description}</p>
+        `;
+        
+        // Add animation events
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-4px)';
+            card.style.boxShadow = '0 8px 24px rgba(0,0,0,0.12)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+        });
+        
+        return card;
+    }
+
+    createUpdateCard(update) {
+        const card = document.createElement('article');
+        card.className = 'update-card';
+        
+        card.innerHTML = `
+            <h3><a href="${update.permalink}">${update.title}</a></h3>
+            <p class="update-excerpt">${update.excerpt}</p>
+            <div class="update-meta">
+                <time datetime="${update.date}">${update.date_formatted}</time>
+                <a href="${update.permalink}" class="read-more" data-i18n="updates.readMore">Read more</a>
+            </div>
+        `;
+        
+        return card;
+    }
+}
+
+// Initialize WordPress integration after DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Add a small delay to ensure other scripts are loaded
+    setTimeout(() => {
+        window.wpIntegration = new WordPressIntegration();
+    }, 500);
+});

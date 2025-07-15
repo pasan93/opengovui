@@ -1,13 +1,13 @@
 # OpenGovUI
 
 ![Licence](https://img.shields.io/badge/licence-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-2.0.0-green.svg)
+![Version](https://img.shields.io/badge/version-2.1.0-green.svg)
 ![Static Template](https://img.shields.io/badge/static%20template-v1.2.0-blue.svg)
-![WordPress CMS](https://img.shields.io/badge/wordpress%20cms-v2.0.0-green.svg)
+![WordPress CMS](https://img.shields.io/badge/wordpress%20cms-v2.1.0-green.svg)
 
 <img width="1399" alt="image" src="https://github.com/user-attachments/assets/16597505-da85-4ffd-8ddc-6b598f2afa2b">
 
-A 100% open source modern, accessible, and multilingual website template designed specifically for government portals. Available as both a **static HTML template** and a **full WordPress CMS solution**.
+A 100% open source modern, accessible, and multilingual website template designed specifically for government portals. Available as both a **static HTML template** and a **full WordPress CMS solution** with advanced multilingual support.
 
 [Live Demo](https://govui.openxs.org)
 
@@ -22,12 +22,14 @@ Perfect for straightforward government portals that don't need content managemen
 - **✅ No database needed**
 
 ### 🎛️ **Option 2: WordPress CMS** *(Recommended for dynamic content)*
-Full content management system with admin interface for managing services, categories, and updates.
+Full content management system with advanced multilingual support and admin interface.
 
 - **✅ Admin dashboard** - Manage content without coding
 - **✅ Custom post types** - Services, Categories, Government Updates
-- **✅ REST API** - Integrate with other systems
-- **✅ User management** - Multiple admin users
+- **✅ Polylang integration** - Professional multilingual support
+- **✅ REST API** - Advanced integration capabilities
+- **✅ Content population** - Automated content creation system
+- **✅ Translation management** - Auto-translation capabilities
 
 ---
 
@@ -42,18 +44,34 @@ Full content management system with admin interface for managing services, categ
 - Skip to main content functionality
 - ARIA labels where necessary
 - Semantic HTML structure
+- Government accessibility standards compliant
 
-### 🌐 Internationalisation (i18n)
-- Support for multiple languages (English, Sinhala, Tamil)
-- Language switching functionality
-- Uses `data-i18n` attributes for easy text replacement
+### 🌐 Advanced Multilingual Support
+- **Polylang Integration**: Professional WordPress multilingual plugin support
+- **Language Syncing**: Automatic synchronization of meta fields across translations
+- **Smart Language Detection**: Automatic language mapping and detection
+- **Translation Management**: Built-in auto-translation capabilities
+- **Content Synchronization**: Seamless content management across all languages
+- Full support for **English (en_GB, en_US)**, **Sinhala (si_LK)**, and **Tamil (ta_LK)**
 
-### 🎨 Design Features
-- Clean, professional government aesthetic [[memory:3285333]]
+### 🎨 Design Features [[memory:3285333]]
+- Clean, professional government aesthetic with rounded, easy-to-read fonts
 - FontAwesome 6.5.1 icons (CDN hosted)
 - Service cards with intuitive icons
 - Grid-based layouts for services and topics
 - Social media integration
+- Custom color schemes for categories
+
+### 🔧 WordPress CMS Advanced Features
+- **Custom Post Types**: 
+  - Government Services with rich metadata
+  - Service Categories with icons and colors
+  - Government Updates with featured content
+- **Enhanced REST API**: Custom endpoints for all content types
+- **Content Population System**: One-click content creation with sample data
+- **Meta Field Management**: Service URLs, processing times, requirements, featured status
+- **Admin Interface**: Custom admin pages for content management
+- **Language-Aware Content**: All content respects current language context
 
 ---
 
@@ -81,16 +99,17 @@ cd opengovui-static
 
 ## 🎛️ **Quick Start - WordPress CMS**
 
-Full content management system with admin interface.
+Full content management system with advanced multilingual capabilities.
 
 ### Requirements
-- PHP 8.4+
-- MariaDB/MySQL
-- Web server (Apache/Nginx) or PHP built-in server
+- **PHP 8.4+**
+- **MariaDB/MySQL**
+- **Web server** (Apache/Nginx) or PHP built-in server
+- **Polylang Plugin** (for full multilingual support)
 
 ### Installation
 ```bash
-# Get the WordPress version (v2.0.0)
+# Get the WordPress version (v2.1.0)
 git clone https://github.com/pasan93/opengovui.git opengovui-cms
 cd opengovui-cms
 ```
@@ -117,8 +136,10 @@ cd opengovui-cms
 4. **Complete Installation:**
    - Open http://localhost:8080
    - Follow WordPress installation wizard
+   - **Install Polylang Plugin** for multilingual support
    - Activate "OpenGovUI" theme
-   - Start adding government services and content!
+   - **Populate Content**: Use the built-in content population system
+   - Start managing government services and content!
 
 📚 **[View Full WordPress Setup Guide](WORDPRESS_SETUP_GUIDE.md)**
 
@@ -143,13 +164,26 @@ opengovui-static/
 ```
 opengovui-cms/
 ├── wp-content/
-│   └── themes/
-│       └── opengovui/     # Custom government theme
-│           ├── style.css
-│           ├── index.php
-│           └── functions.php
-├── wp-config.php          # Database configuration
-├── setup_database.sql     # Database setup
+│   ├── themes/
+│   │   └── opengovui/           # Custom government theme
+│   │       ├── style.css        # Theme styles
+│   │       ├── index.php        # Main template
+│   │       ├── front-page.php   # Homepage template
+│   │       ├── header.php       # Header template
+│   │       ├── footer.php       # Footer template
+│   │       ├── functions.php    # Theme functionality
+│   │       ├── single-gov_service.php  # Service template
+│   │       ├── js/
+│   │       │   ├── multilingual.js     # Polylang integration
+│   │       │   └── admin-auto-translate.js
+│   │       └── includes/
+│   │           ├── content-populator.php
+│   │           └── translation-manager.php
+│   ├── plugins/
+│   │   └── polylang/           # Multilingual support
+│   └── languages/              # Translation files
+├── wp-config.php               # Database configuration
+├── setup_database.sql          # Database setup
 └── WORDPRESS_SETUP_GUIDE.md
 ```
 
@@ -157,7 +191,41 @@ opengovui-cms/
 
 ## 📚 Key Components
 
-### i18n Implementation
+### WordPress CMS Features (v2.1.0)
+
+#### Custom Post Types & REST API
+- **Government Services** (`/wp-json/wp/v2/gov_service`)
+  - Service icons, URLs, processing times
+  - Requirements and featured status
+  - Full multilingual support
+- **Service Categories** (`/wp-json/wp/v2/service_category`) 
+  - Custom icons and color schemes
+  - Multilingual category management
+- **Government Updates** (`/wp-json/wp/v2/gov_update`)
+  - Featured updates and announcements
+  - Date-based sorting and archives
+
+#### Enhanced API Endpoints
+```
+/wp-json/opengovui/v1/featured-services?lang=en  # Featured services
+/wp-json/opengovui/v1/categories?lang=si         # Service categories  
+/wp-json/opengovui/v1/updates?lang=ta           # Government updates
+/wp-json/opengovui/v1/services?lang=en          # All services
+```
+
+#### Content Population System
+- **One-Click Setup**: Automatically creates sample government content
+- **Multilingual Content**: Creates content in English, Sinhala, and Tamil
+- **Realistic Data**: Government services, categories, and updates
+- **Admin Interface**: Easy-to-use content management dashboard
+
+#### Polylang Integration
+- **Advanced Language Management**: Professional multilingual plugin support
+- **Meta Field Syncing**: Automatic synchronization of custom fields across languages
+- **Language Detection**: Smart language mapping and detection
+- **Translation Workflow**: Streamlined content translation process
+
+### i18n Implementation (Static Template)
 The template uses a straightforward i18n system:
 
 1. **HTML Markup**: Uses `data-i18n` attributes for translatable content:
@@ -174,52 +242,101 @@ The template uses a straightforward i18n system:
 </div>
 ```
 
-### WordPress CMS Features (v2.0.0+)
-- **Custom Post Types**: Services, Categories, Government Updates
-- **REST API Endpoints**: 
-  - `/wp-json/wp/v2/gov_service` - Government services
-  - `/wp-json/wp/v2/service_category` - Service categories  
-  - `/wp-json/wp/v2/gov_update` - Government updates
-- **Admin Interface**: Full WordPress dashboard for content management
-- **Custom Meta Fields**: Service icons, URLs, processing times, category colors
-
 ### Main Sections
-- Header with language selector and search
-- Hero section with featured services
-- Topic categories with icon navigation
-- Government updates section
-- Footer with important links and social media
+- **Header** with Polylang language selector and search
+- **Hero section** with featured services from WordPress
+- **Topic categories** with dynamic icon navigation
+- **Government updates** with content management
+- **Footer** with important links and social media
 
 ---
 
 ## 🔄 Customisation
 
-### Changing Content
+### WordPress CMS (Recommended)
+- **Admin Dashboard**: Full WordPress interface for content management
+- **Content Population**: Use the built-in system to create sample content
+- **Service Management**: Add/edit services with icons, URLs, and metadata
+- **Category Management**: Create categories with custom colors and icons
+- **Update Publishing**: Manage government announcements and news
+- **Multilingual Content**: Full translation support via Polylang
+- **Custom Fields**: Rich metadata for all content types
 
-**Static Template:**
+### Static Template
 - Edit the HTML directly to change content
 - Update the `data-i18n` attributes and corresponding translation files
 - Modify icons by changing FontAwesome classes
-
-**WordPress CMS:**
-- Use the WordPress admin dashboard
-- Add/edit Services, Categories, and Updates
-- Upload images and manage media
-- Customize through the theme customizer
+- Customize CSS for branding
 
 ### Styling
-- Edit `css/styles.css` to match your government's brand colours
-- FontAwesome 6.5.1 is included for icons (CDN hosted)
 - WordPress version inherits all static template styling
+- Edit theme's `style.css` for WordPress-specific customizations
+- FontAwesome 6.5.1 included for comprehensive icon support
+- Custom color schemes available for categories
+
+---
+
+## 🔌 Plugin Dependencies
+
+### Required for Full Functionality
+- **Polylang** (Free): Multilingual support
+  - Language management and switching
+  - Content translation workflow
+  - Meta field synchronization
+
+### Recommended
+- **Classic Editor**: For traditional WordPress editing experience
+- **Yoast SEO**: Enhanced SEO with multilingual support
 
 ---
 
 ## 📋 **Version History**
 
-- **v2.0.0** - WordPress CMS Integration (Current)
+- **v2.1.0** - Enhanced WordPress CMS with Polylang Integration (Current)
+  - Full Polylang multilingual plugin support
+  - Advanced REST API endpoints
+  - Content population system
+  - Translation management capabilities
+  - Enhanced admin interface
+- **v2.0.0** - WordPress CMS Integration
 - **v1.2.0** - Complete Static Template with Tamil translations  
 - **v1.1.0** - Fira Sans typography update
 - **v1.0.0** - Initial static template release
+
+---
+
+## 🚀 **API Documentation**
+
+### REST API Endpoints
+
+#### Custom OpenGovUI Endpoints
+```bash
+# Get featured services
+GET /wp-json/opengovui/v1/featured-services?lang=en
+
+# Get service categories  
+GET /wp-json/opengovui/v1/categories?lang=si
+
+# Get government updates
+GET /wp-json/opengovui/v1/updates?lang=ta
+
+# Get all services
+GET /wp-json/opengovui/v1/services?lang=en&category=health
+```
+
+#### Standard WordPress Endpoints
+```bash
+# Government Services
+GET /wp-json/wp/v2/gov_service
+
+# Service Categories
+GET /wp-json/wp/v2/service_category
+
+# Government Updates  
+GET /wp-json/wp/v2/gov_update
+```
+
+All endpoints support language parameters and return properly formatted content with metadata.
 
 ---
 

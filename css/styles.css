@@ -16,7 +16,8 @@
     /* Font Families */
     --font-sinhala: 'Noto Sans Sinhala', 'Iskoola Pota', sans-serif;
     --font-tamil: 'Noto Sans Tamil', sans-serif;
-    --font-english: 'DM Sans', system-ui, -apple-system, sans-serif;
+    --font-primary: 'Fira Sans', system-ui, -apple-system, sans-serif;
+    --font-english: 'Fira Sans', system-ui, -apple-system, sans-serif;
     
     /* Spacing */
     --spacing-xs: 0.5rem;
@@ -567,6 +568,57 @@ body {
     opacity: 0;
 }
 
+/* Typography Enhancement */
+.hero h1 {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.hero-title {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    opacity: 0.85;
+    letter-spacing: -0.01em;
+}
+
+.lead-text, .intro-text {
+    font-family: var(--font-primary);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    font-weight: 400;
+    color: var(--text-light);
+}
+
+blockquote {
+    font-family: var(--font-primary);
+    font-weight: 500;
+    border-left: 4px solid var(--primary);
+    padding-left: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+    color: var(--text-light);
+}
+
+/* Enhanced heading hierarchy */
+h1, h2 {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+}
+
 /* RTL Support */
 [dir="rtl"] {
-    text-align:
+    text-align: right;
+}

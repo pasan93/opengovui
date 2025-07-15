@@ -169,8 +169,85 @@ class I18nManager {
                 }
             },
             ta: {
-                // Tamil translations would go here
-                // Following the same structure as English and Sinhala
+                header: {
+                    contact: "தொடர்பு கொள்ளுங்கள்",
+                    login: "உள்நுழைய",
+                    govtName: "நோர்வாலிஸ் அரசு"
+                },
+                search: {
+                    placeholder: "தேடுங்கள்",
+                    button: "தேடுங்கள்"
+                },
+                hero: {
+                    title: "அரசு சேவைகள் மற்றும் தகவல்களை ஒரே இடத்தில் அணுகவும்",
+                    subtitle: "மிகவும் கேட்கப்படும் சேவைகள்"
+                },
+                services: {
+                    nationalId: {
+                        title: "தேசிய அடையாள அட்டை",
+                        description: "தேசிய அடையாள அட்டைக்கு விண்ணப்பிக்கவும் அல்லது புதுப்பிக்கவும்"
+                    },
+                    passport: {
+                        title: "கடவுச்சீட்டு",
+                        description: "கடவுச்சீட்டுக்கு விண்ணப்பிக்கவும் அல்லது புதுப்பிக்கவும்"
+                    },
+                    vehicleReg: {
+                        title: "வாகன பதிவு",
+                        description: "வாகனம் பதிவு செய்யவும் அல்லது உரிமையை மாற்றவும்"
+                    },
+                    education: {
+                        title: "கல்வி",
+                        description: "கல்வி சேவைகளை அணுகவும்"
+                    }
+                },
+                categories: {
+                    title: "வகைப்படுத்தி பார்வையிடவும்",
+                    health: {
+                        title: "சுகாதாரம் மற்றும் பராமரிப்பு",
+                        description: "சுகாதார சேவைகள், காப்பீடு, முதியோர் பராமரிப்பு"
+                    },
+                    business: {
+                        title: "வணிகம்",
+                        description: "பதிவு, உரிமங்கள், வரிகள்"
+                    },
+                    housing: {
+                        title: "வீட்டு வசதி",
+                        description: "சொத்து, பயன்பாடுகள், உள்ளூர் சேவைகள்"
+                    },
+                    immigration: {
+                        title: "குடியேற்றம்",
+                        description: "விசாக்கள், குடியுரிமை, வேலை அனுமதிகள்"
+                    }
+                },
+                updates: {
+                    title: "அரசு புதுப்பிப்புகள்",
+                    viewAll: "அனைத்தையும் பார்க்கவும்",
+                    readMore: "மேலும் படிக்கவும்"
+                },
+                footer: {
+                    quickLinks: {
+                        title: "விரைவு இணைப்புகள்",
+                        aboutSL: "நோர்வாலிஸ் பற்றி",
+                        gazette: "அரசு வர்த்தமானி",
+                        parliament: "நாடாளுமன்றம்",
+                        departments: "துறைகள்"
+                    },
+                    help: {
+                        title: "உதவி மற்றும் ஆதரவு",
+                        contact: "எங்களை தொடர்பு கொள்ளுங்கள்",
+                        faq: "அடிக்கடி கேட்கப்படும் கேள்விகள்",
+                        siteMap: "தள வரைபடம்",
+                        accessibility: "அணுகல்தன்மை"
+                    },
+                    legal: {
+                        title: "சட்டபூர்வமான",
+                        privacy: "தனியுரிமை கொள்கை",
+                        terms: "பயன்பாட்டு விதிமுறைகள்",
+                        copyright: "பதிப்புரிமை",
+                        disclaimer: "மறுப்பு"
+                    },
+                    copyright: "© 2024 நோர்வாலிஸ் அரசு. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை."
+                }
             }
         };
     }

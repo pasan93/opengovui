@@ -35,9 +35,19 @@
         },
 
         bindEvents: function() {
-            // Handle language switching
+            // Handle language switching - let WordPress handle the redirect
             $(document).on('click', '.polylang-switcher a', function(e) {
                 var $link = $(this);
+                var href = $link.attr('href');
+                
+                // If this is a proper Polylang link with href, let it redirect naturally
+                if (href && href !== '#' && href !== window.location.href) {
+                    // Let the browser handle the redirect to WordPress language URL
+                    return true;
+                }
+                
+                // Fallback for manual language switching
+                e.preventDefault();
                 var langCode = $link.attr('lang') || $link.data('lang') || $link.attr('class').match(/lang-(\w+)/)?.[1];
                 
                 // Convert WordPress language codes to our i18n system
@@ -53,10 +63,15 @@
                 
                 var targetLang = i18nLangMap[langCode] || 'en';
                 
-                // Update the frontend i18n system immediately
+                // Update the frontend i18n system immediately for static content
                 if (window.i18nManager) {
                     window.i18nManager.setLanguage(targetLang);
                     window.i18nManager.updateContent();
+                }
+                
+                // If we have WordPress AJAX data, try to update dynamic content
+                if (typeof polylang_ajax !== 'undefined') {
+                    this.updateWordPressContent(langCode);
                 }
             });
 
@@ -261,6 +276,66 @@
                 var direction = rtlLangs.includes(polylang_ajax.current_lang) ? 'rtl' : 'ltr';
                 $('html').attr('dir', direction);
             }
+        },
+
+        updateWordPressContent: function(langCode) {
+            // Update WordPress content via AJAX
+            var self = this;
+            
+            // Update services
+            $.ajax({
+                url: '/wp-json/opengovui/v1/featured-services',
+                data: { lang: langCode },
+                success: function(response) {
+                    if (response && response.length > 0) {
+                        self.renderServices(response);
+                    }
+                }
+            });
+            
+            // Update categories
+            $.ajax({
+                url: '/wp-json/opengovui/v1/categories',
+                data: { lang: langCode },
+                success: function(response) {
+                    if (response && response.length > 0) {
+                        self.renderCategories(response);
+                    }
+                }
+            });
+        },
+
+        renderServices: function(services) {
+            var $grid = $('.services-grid');
+            if ($grid.length === 0) return;
+            
+            $grid.empty();
+            services.slice(0, 4).forEach(function(service) {
+                var $card = $('<a href="' + (service.permalink || '#') + '" class="service-card">' +
+                    '<div class="service-icon"><i class="' + (service.icon || 'fa-solid fa-file') + '"></i></div>' +
+                    '<h3>' + service.title + '</h3>' +
+                    '<p>' + service.description + '</p>' +
+                    '</a>');
+                $grid.append($card);
+            });
+        },
+
+        renderCategories: function(categories) {
+            var $grid = $('.topics-grid');
+            if ($grid.length === 0) return;
+            
+            $grid.empty();
+            categories.forEach(function(category) {
+                var $card = $('<a href="' + (category.permalink || '#') + '" class="topic-card">' +
+                    '<h3><i class="' + (category.icon || 'fa-solid fa-folder') + '"></i>' +
+                    '<span>' + category.title + '</span></h3>' +
+                    '<p>' + category.description + '</p>' +
+                    '</a>');
+                if (category.color) {
+                    $card.css('border-color', category.color);
+                }
+                $grid.append($card);
+            });
         }
     };
 

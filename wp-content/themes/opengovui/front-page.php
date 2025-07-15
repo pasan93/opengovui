@@ -24,6 +24,21 @@ get_header(); ?>
                             'numberposts' => 4
                         ));
 
+                        // Debug: Let's also try to get ALL services to see if any exist
+                        $all_services = opengovui_get_posts_in_language('gov_service', array('numberposts' => -1));
+                        
+                        // Debug info (remove in production)
+                        if (current_user_can('manage_options')) {
+                            echo '<!-- Debug: Current language: ' . (function_exists('pll_current_language') ? pll_current_language() : 'no-polylang') . ' -->';
+                            echo '<!-- Debug: Featured services found: ' . count($featured_services) . ' -->';
+                            echo '<!-- Debug: All services found: ' . count($all_services) . ' -->';
+                        }
+                        
+                        // If no featured services but we have services, use all services
+                        if (!$featured_services && $all_services) {
+                            $featured_services = array_slice($all_services, 0, 4);
+                        }
+
                         if ($featured_services) {
                             foreach ($featured_services as $service) {
                                 $service_icon = get_post_meta($service->ID, 'service_icon', true);

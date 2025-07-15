@@ -1,0 +1,61 @@
+# WordPress Core Files
+/wp-admin/
+/wp-includes/
+wp-activate.php
+wp-blog-header.php
+wp-comments-post.php
+wp-cron.php
+wp-links-opml.php
+wp-load.php
+wp-login.php
+wp-mail.php
+wp-settings.php
+wp-signup.php
+wp-trackback.php
+xmlrpc.php
+/index.php
+license.txt
+readme.html
+
+# Keep wp-config.php and theme files (our custom configuration)
+# Allow index.php in theme directories
+!wp-content/themes/*/index.php
+
+# WordPress uploads and cache
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+
+# Default WordPress themes (keep only our custom theme)
+wp-content/themes/twenty*/
+
+# System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+error_log
+
+# Database backups
+*.sql.gz
+*.sql.bak
+
+# Node modules (if using build tools)
+node_modules/
+npm-debug.log
+
+# Environment files
+.env
+.env.local 

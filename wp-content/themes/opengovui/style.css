@@ -1,0 +1,37 @@
+/*
+Theme Name: OpenGovUI
+Description: Modern, accessible, and multilingual WordPress theme for government portals
+Version: 1.0.0
+Author: Pasan Thilakasiri
+License: MIT
+*/
+
+/* Import original styles */
+@import url("../../../css/styles.css");
+
+/* WordPress specific overrides */
+body.admin-bar {
+    margin-top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+    body.admin-bar {
+        margin-top: 46px;
+    }
+}
+
+/* WordPress content area adjustments */
+.wp-content {
+    margin: 2rem 0;
+}
+
+.wp-block-group,
+.wp-block-columns {
+    margin-bottom: 2rem;
+}
+
+/* Ensure government branding is maintained */
+.gov-header,
+.gov-footer {
+    /* Maintain original government styling */
+} 

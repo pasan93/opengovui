@@ -14,6 +14,7 @@ class OpenGovUI_Content_Populator {
         add_action('wp_loaded', array($this, 'maybe_populate_content'));
         add_action('wp_ajax_populate_content', array($this, 'ajax_populate_content'));
         add_action('wp_ajax_nopriv_populate_content', array($this, 'ajax_populate_content'));
+        add_action('wp_ajax_cleanup_duplicate_posts', array($this, 'ajax_cleanup_duplicate_posts'));
     }
     
     public function maybe_populate_content() {
@@ -465,49 +466,133 @@ class OpenGovUI_Content_Populator {
         return $created_pages;
     }
     
+    public function ajax_cleanup_duplicate_posts() {
+        if (!current_user_can('manage_options')) {
+            wp_die('Unauthorized');
+        }
+        
+        $result = $this->cleanup_duplicate_posts();
+        wp_send_json_success($result);
+    }
+    
+    public function cleanup_duplicate_posts() {
+        $cleaned = array();
+        $post_types = array('gov_service', 'service_category', 'gov_update');
+        
+        foreach ($post_types as $post_type) {
+            $posts = get_posts(array(
+                'post_type' => $post_type,
+                'posts_per_page' => -1,
+                'post_status' => 'any'
+            ));
+            
+            foreach ($posts as $post) {
+                // Check if this is a duplicate post (ends with -si or -ta)
+                if (preg_match('/-(si|ta)$/', $post->post_name)) {
+                    wp_delete_post($post->ID, true); // Force delete permanently
+                    $cleaned[] = $post->post_title . ' (' . $post->post_name . ')';
+                }
+            }
+        }
+        
+        return array(
+            'message' => 'Duplicate posts cleaned up successfully',
+            'cleaned_posts' => $cleaned,
+            'count' => count($cleaned)
+        );
+    }
+    
     private function create_multilingual_post($post_type, $titles, $excerpts = array(), $meta = array(), $slug = '', $contents = array()) {
         $created_posts = array();
         $languages = array('en', 'si', 'ta');
         $post_ids = array();
+        $default_lang = 'en';
         
-        foreach ($languages as $lang) {
-            $post_data = array(
-                'post_type' => $post_type,
-                'post_status' => 'publish',
-                'post_title' => $titles[$lang],
-                'post_name' => $slug . ($lang !== 'en' ? '-' . $lang : ''),
-                'post_content' => isset($contents[$lang]) ? $contents[$lang] : '',
-                'post_excerpt' => isset($excerpts[$lang]) ? $excerpts[$lang] : ''
-            );
-            
-            // Check if post already exists
-            $existing_post = get_page_by_path($post_data['post_name'], OBJECT, $post_type);
-            if ($existing_post) {
-                $post_id = $existing_post->ID;
-                wp_update_post(array_merge($post_data, array('ID' => $post_id)));
-            } else {
-                $post_id = wp_insert_post($post_data);
-            }
-            
-            if ($post_id && !is_wp_error($post_id)) {
-                // Add meta fields
-                foreach ($meta as $key => $value) {
-                    update_post_meta($post_id, $key, $value);
-                }
-                
-                // Set language if Polylang is active
-                if (function_exists('pll_set_post_language')) {
-                    pll_set_post_language($post_id, $lang);
-                }
-                
-                $post_ids[$lang] = $post_id;
-                $created_posts[$lang] = $post_id;
-            }
+        // First, create the main post in the default language
+        $main_post_data = array(
+            'post_type' => $post_type,
+            'post_status' => 'publish',
+            'post_title' => $titles[$default_lang],
+            'post_name' => $slug,
+            'post_content' => isset($contents[$default_lang]) ? $contents[$default_lang] : '',
+            'post_excerpt' => isset($excerpts[$default_lang]) ? $excerpts[$default_lang] : ''
+        );
+        
+        // Check if main post already exists
+        $existing_main_post = get_page_by_path($slug, OBJECT, $post_type);
+        if ($existing_main_post) {
+            $main_post_id = $existing_main_post->ID;
+            wp_update_post(array_merge($main_post_data, array('ID' => $main_post_id)));
+        } else {
+            $main_post_id = wp_insert_post($main_post_data);
         }
         
-        // Link translations if Polylang is active
-        if (function_exists('pll_save_post_translations') && count($post_ids) > 1) {
-            pll_save_post_translations($post_ids);
+        if ($main_post_id && !is_wp_error($main_post_id)) {
+            // Add meta fields to main post
+            foreach ($meta as $key => $value) {
+                update_post_meta($main_post_id, $key, $value);
+            }
+            
+            // Set language for main post
+            if (function_exists('pll_set_post_language')) {
+                pll_set_post_language($main_post_id, $default_lang);
+            }
+            
+            $post_ids[$default_lang] = $main_post_id;
+            $created_posts[$default_lang] = $main_post_id;
+            
+            // Now create translations for other languages
+            foreach ($languages as $lang) {
+                if ($lang === $default_lang) continue;
+                
+                // Check if translation already exists
+                $existing_translation_id = null;
+                if (function_exists('pll_get_post')) {
+                    $existing_translation_id = pll_get_post($main_post_id, $lang);
+                }
+                
+                if ($existing_translation_id) {
+                    // Update existing translation
+                    $translation_data = array(
+                        'ID' => $existing_translation_id,
+                        'post_title' => $titles[$lang],
+                        'post_content' => isset($contents[$lang]) ? $contents[$lang] : '',
+                        'post_excerpt' => isset($excerpts[$lang]) ? $excerpts[$lang] : ''
+                    );
+                    wp_update_post($translation_data);
+                    $translation_id = $existing_translation_id;
+                } else {
+                    // Create new translation
+                    $translation_data = array(
+                        'post_type' => $post_type,
+                        'post_status' => 'publish',
+                        'post_title' => $titles[$lang],
+                        'post_content' => isset($contents[$lang]) ? $contents[$lang] : '',
+                        'post_excerpt' => isset($excerpts[$lang]) ? $excerpts[$lang] : ''
+                    );
+                    $translation_id = wp_insert_post($translation_data);
+                }
+                
+                if ($translation_id && !is_wp_error($translation_id)) {
+                    // Add meta fields to translation
+                    foreach ($meta as $key => $value) {
+                        update_post_meta($translation_id, $key, $value);
+                    }
+                    
+                    // Set language for translation
+                    if (function_exists('pll_set_post_language')) {
+                        pll_set_post_language($translation_id, $lang);
+                    }
+                    
+                    $post_ids[$lang] = $translation_id;
+                    $created_posts[$lang] = $translation_id;
+                }
+            }
+            
+            // Link all translations together
+            if (function_exists('pll_save_post_translations') && count($post_ids) > 1) {
+                pll_save_post_translations($post_ids);
+            }
         }
         
         return $created_posts;

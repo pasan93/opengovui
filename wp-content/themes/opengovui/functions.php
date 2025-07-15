@@ -670,6 +670,24 @@ function opengovui_populate_page() {
                 </a>
             </p>
             
+            <hr style="margin: 30px 0;">
+            
+            <h3>🔧 Fix Translation Issues</h3>
+            <div class="notice notice-warning inline">
+                <p><strong>Translation Structure Fix:</strong> If you have content that was created as separate posts instead of proper translations, use this cleanup tool.</p>
+            </div>
+            
+            <p>
+                <button id="cleanup-duplicates" class="button button-secondary">
+                    🧹 Clean Up Duplicate Posts
+                </button>
+                <span style="margin-left: 15px; color: #666;">
+                    This will remove posts with '-si' and '-ta' suffixes that should be translations instead.
+                </span>
+            </p>
+            
+            <div id="cleanup-result" style="display: none; margin-top: 15px;"></div>
+            
             <div id="populate-progress" style="display:none;">
                 <p>Populating content... Please wait.</p>
                 <div class="progress-bar">
@@ -704,7 +722,69 @@ function opengovui_populate_page() {
             width: 0%;
             transition: width 0.3s ease;
         }
+        .notice.inline {
+            margin: 10px 0;
+            padding: 10px;
+        }
     </style>
+    
+    <script>
+    jQuery(document).ready(function($) {
+        $('#cleanup-duplicates').on('click', function(e) {
+            e.preventDefault();
+            
+            if (!confirm('Are you sure you want to clean up duplicate posts? This will permanently delete posts with \'-si\' and \'-ta\' suffixes.')) {
+                return;
+            }
+            
+            var button = $(this);
+            var originalText = button.text();
+            
+            button.text('🔄 Cleaning...').prop('disabled', true);
+            $('#cleanup-result').hide();
+            
+            $.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'cleanup_duplicate_posts',
+                },
+                success: function(response) {
+                    if (response.success) {
+                        var result = response.data;
+                        var resultHtml = '<div class="notice notice-success inline">';
+                        resultHtml += '<p><strong>✅ Cleanup Complete!</strong></p>';
+                        resultHtml += '<p>Removed ' + result.count + ' duplicate posts.</p>';
+                        
+                        if (result.cleaned_posts.length > 0) {
+                            resultHtml += '<details><summary>Cleaned Posts</summary><ul>';
+                            result.cleaned_posts.forEach(function(post) {
+                                resultHtml += '<li>' + post + '</li>';
+                            });
+                            resultHtml += '</ul></details>';
+                        }
+                        
+                        resultHtml += '</div>';
+                        $('#cleanup-result').html(resultHtml).show();
+                        
+                        // Update content statistics
+                        setTimeout(function() {
+                            location.reload();
+                        }, 2000);
+                    } else {
+                        $('#cleanup-result').html('<div class="notice notice-error inline"><p>❌ Error: ' + response.data + '</p></div>').show();
+                    }
+                },
+                error: function() {
+                    $('#cleanup-result').html('<div class="notice notice-error inline"><p>❌ Error: Failed to connect to server</p></div>').show();
+                },
+                complete: function() {
+                    button.text(originalText).prop('disabled', false);
+                }
+            });
+        });
+    });
+    </script>
     <?php
 }
 

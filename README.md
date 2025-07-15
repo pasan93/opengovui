@@ -29,7 +29,7 @@ Full content management system with advanced multilingual support and admin inte
 - **✅ Polylang integration** - Professional multilingual support
 - **✅ REST API** - Advanced integration capabilities
 - **✅ Content population** - Automated content creation system
-- **✅ Translation management** - Auto-translation capabilities
+- **✅ AI Translation System** - Claude Sonnet 3.7 powered auto-translation
 
 ---
 
@@ -50,7 +50,9 @@ Full content management system with advanced multilingual support and admin inte
 - **Polylang Integration**: Professional WordPress multilingual plugin support
 - **Language Syncing**: Automatic synchronization of meta fields across translations
 - **Smart Language Detection**: Automatic language mapping and detection
-- **Translation Management**: Built-in auto-translation capabilities
+- **AI-Powered Translation**: Claude Sonnet 3.7 API integration for intelligent translations
+- **Auto-Translation Manager**: Automated filling of missing translations with admin interface
+- **Translation Scanning**: Intelligent detection of missing translations across all content
 - **Content Synchronization**: Seamless content management across all languages
 - Full support for **English (en_GB, en_US)**, **Sinhala (si_LK)**, and **Tamil (ta_LK)**
 
@@ -72,6 +74,20 @@ Full content management system with advanced multilingual support and admin inte
 - **Meta Field Management**: Service URLs, processing times, requirements, featured status
 - **Admin Interface**: Custom admin pages for content management
 - **Language-Aware Content**: All content respects current language context
+
+### 🤖 AI-Powered Translation System
+- **Claude Sonnet 3.7 Integration**: Advanced AI for contextually accurate translations
+- **Intelligent Translation Manager**: 
+  - Scans all content for missing translations
+  - Automatically fills gaps using AI
+  - Maintains translation consistency across the site
+- **Admin Dashboard**: Easy-to-use interface for managing translations
+  - One-click translation scanning
+  - Bulk auto-translation capabilities  
+  - Translation backup and restore
+- **Multi-Language Support**: Seamlessly translates between English, Sinhala, and Tamil
+- **Government-Specific Context**: AI trained to understand government terminology and formal language
+- **API Key Management**: Secure configuration for Claude API integration
 
 ---
 
@@ -138,7 +154,11 @@ cd opengovui-cms
    - Follow WordPress installation wizard
    - **Install Polylang Plugin** for multilingual support
    - Activate "OpenGovUI" theme
+   - **Configure AI Translation** (Optional):
+     - Add your Claude API key to wp-config.php: `define('CLAUDE_API_KEY', 'your-api-key');`
+     - Or configure via WordPress admin: Tools → Auto Translation
    - **Populate Content**: Use the built-in content population system
+   - **Auto-Translate Content**: Access Tools → Auto Translation for AI-powered translations
    - Start managing government services and content!
 
 📚 **[View Full WordPress Setup Guide](WORDPRESS_SETUP_GUIDE.md)**
@@ -294,9 +314,10 @@ The template uses a straightforward i18n system:
 
 - **v2.1.0** - Enhanced WordPress CMS with Polylang Integration (Current)
   - Full Polylang multilingual plugin support
+  - **AI-powered translation system** with Claude Sonnet 3.7 integration
   - Advanced REST API endpoints
   - Content population system
-  - Translation management capabilities
+  - Intelligent translation manager with admin dashboard
   - Enhanced admin interface
 - **v2.0.0** - WordPress CMS Integration
 - **v1.2.0** - Complete Static Template with Tamil translations  

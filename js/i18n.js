@@ -63,28 +63,46 @@ class I18nManager {
                     readMore: "Read more"
                 },
                 footer: {
-                    quickLinks: {
-                        title: "Quick Links",
-                        aboutSL: "About Norvalis",
-                        gazette: "Government Gazette",
-                        parliament: "Parliament",
-                        departments: "Departments"
+                    services: {
+                        title: "Services",
+                        benefits: "Benefits",
+                        births: "Births, deaths, marriages",
+                        business: "Business and self-employed",
+                        childcare: "Childcare and parenting",
+                        citizenship: "Citizenship and living abroad",
+                        crime: "Crime, justice and the law"
                     },
-                    help: {
-                        title: "Help & Support",
-                        contact: "Contact Us",
-                        faq: "FAQs",
-                        siteMap: "Site Map",
-                        accessibility: "Accessibility"
+                    government: {
+                        title: "Government activity",
+                        departments: "Departments",
+                        news: "News",
+                        guidance: "Guidance and regulation",
+                        research: "Research and statistics",
+                        consultations: "Policy papers and consultations",
+                        transparency: "Transparency"
                     },
-                    legal: {
-                        title: "Legal",
-                        privacy: "Privacy Policy",
-                        terms: "Terms of Use",
-                        copyright: "Copyright",
-                        disclaimer: "Disclaimer"
+                    support: {
+                        title: "Support links",
+                        help: "Help",
+                        privacy: "Privacy",
+                        cookies: "Cookies",
+                        accessibility: "Accessibility statement",
+                        contact: "Contact",
+                        terms: "Terms and conditions"
                     },
-                    copyright: "© 2024 Government of Norvalis. All rights reserved."
+                    meta: {
+                        crown: "Crown copyright",
+                        govtName: "Government of Norvalis",
+                        license: "All content is available under the",
+                        licenseLink: "Open Government Licence v3.0",
+                        followUs: "Follow us:"
+                    },
+                    social: {
+                        facebook: "Follow us on Facebook",
+                        twitter: "Follow us on Twitter",
+                        linkedin: "Follow us on LinkedIn",
+                        youtube: "Follow us on YouTube"
+                    }
                 }
             },
             si: {
@@ -144,28 +162,46 @@ class I18nManager {
                     readMore: "තව කියවන්න"
                 },
                 footer: {
-                    quickLinks: {
-                        title: "ඉක්මන් සබැඳි",
-                        aboutSL: "නෝවාලිස් ගැන",
-                        gazette: "රජයේ ගැසට්",
-                        parliament: "පාර්ලිමේන්තුව",
-                        departments: "දෙපාර්තමේන්තු"
+                    services: {
+                        title: "සේවා",
+                        benefits: "ප්‍රතිලාභ",
+                        births: "උපත්, මරණ, විවාහ",
+                        business: "ව්‍යාපාර සහ ස්වයං-රැකියාව",
+                        childcare: "ළමා රැකවරණය සහ පෙර දරුවන්",
+                        citizenship: "පුරවැසිභාවය සහ විදේශ ජීවත්වීම",
+                        crime: "අපරාධ, යුක්තිය සහ නීතිය"
                     },
-                    help: {
-                        title: "උදව් සහ සහාය",
-                        contact: "අප අමතන්න",
-                        faq: "නිති අසන පැන",
-                        siteMap: "අඩවි සිතියම",
-                        accessibility: "ප්‍රවේශ්‍යතාව"
+                    government: {
+                        title: "රාජ්‍ය ක්‍රියාකාරකම්",
+                        departments: "දෙපාර්තමේන්තු",
+                        news: "ප්‍රවෘත්ති",
+                        guidance: "මාර්ගෝපදේශ සහ නියාමනය",
+                        research: "පර්යේෂණ සහ සංඛ්‍යාලේඛන",
+                        consultations: "ප්‍රතිපත්ති පත්‍ර සහ උපදේශන",
+                        transparency: "විනිවිද දැකීම"
                     },
-                    legal: {
-                        title: "නීතිමය",
-                        privacy: "පෞද්ගලිකත්ව ප්‍රතිපත්තිය",
-                        terms: "භාවිත කොන්දේසි",
-                        copyright: "ප්‍රකාශන හිමිකම",
-                        disclaimer: "වගකීම් ප්‍රතික්ෂේප කිරීම"
+                    support: {
+                        title: "සහාය සබැඳි",
+                        help: "උදව්",
+                        privacy: "පෞද්ගලිකත්වය",
+                        cookies: "කුකීස්",
+                        accessibility: "ප්‍රවේශ්‍යතා ප්‍රකාශනය",
+                        contact: "අමතන්න",
+                        terms: "නියම සහ කොන්දේසි"
                     },
-                    copyright: "© 2024 නෝවාලිස් රජය. සියලු හිමිකම් ඇවිරිණි."
+                    meta: {
+                        crown: "ක්‍රම ප්‍රකාශන හිමිකම",
+                        govtName: "නෝවාලිස් රජය",
+                        license: "සියලු අන්තර්ගතයන් ලබා ගත හැක්කේ",
+                        licenseLink: "විවෘත රාජ්‍ය බලපත්‍රය v3.0",
+                        followUs: "අපව අනුගමනය කරන්න:"
+                    },
+                    social: {
+                        facebook: "ෆේස්බුක් හි අපව අනුගමනය කරන්න",
+                        twitter: "ට්විටර් හි අපව අනුගමනය කරන්න",
+                        linkedin: "ලින්ක්ඩ්ඉන් හි අපව අනුගමනය කරන්න",
+                        youtube: "යූ ටියුබ් හි අපව අනුගමනය කරන්න"
+                    }
                 }
             },
             ta: {
@@ -225,28 +261,46 @@ class I18nManager {
                     readMore: "மேலும் படிக்கவும்"
                 },
                 footer: {
-                    quickLinks: {
-                        title: "விரைவு இணைப்புகள்",
-                        aboutSL: "நோர்வாலிஸ் பற்றி",
-                        gazette: "அரசு வர்த்தமானி",
-                        parliament: "நாடாளுமன்றம்",
-                        departments: "துறைகள்"
+                    services: {
+                        title: "சேவைகள்",
+                        benefits: "நன்மைகள்",
+                        births: "பிறப்பு, இறப்பு, திருமணம்",
+                        business: "வணிகம் மற்றும் சுயதொழில்",
+                        childcare: "குழந்தை பராமரிப்பு மற்றும் பெற்றோர்மை",
+                        citizenship: "குடியுரிமை மற்றும் வெளிநாட்டில் வாழ்தல்",
+                        crime: "குற்றம், நீதி மற்றும் சட்டம்"
                     },
-                    help: {
-                        title: "உதவி மற்றும் ஆதரவு",
-                        contact: "எங்களை தொடர்பு கொள்ளுங்கள்",
-                        faq: "அடிக்கடி கேட்கப்படும் கேள்விகள்",
-                        siteMap: "தள வரைபடம்",
-                        accessibility: "அணுகல்தன்மை"
+                    government: {
+                        title: "அரசு செயல்பாடு",
+                        departments: "துறைகள்",
+                        news: "செய்திகள்",
+                        guidance: "வழிகாட்டுதல் மற்றும் ஒழுங்குமுறை",
+                        research: "ஆராய்ச்சி மற்றும் புள்ளிவிவரங்கள்",
+                        consultations: "கொள்கை ஆவணங்கள் மற்றும் ஆலோசனைகள்",
+                        transparency: "வெளிப்படைத்தன்மை"
                     },
-                    legal: {
-                        title: "சட்டபூர்வமான",
-                        privacy: "தனியுரிமை கொள்கை",
-                        terms: "பயன்பாட்டு விதிமுறைகள்",
-                        copyright: "பதிப்புரிமை",
-                        disclaimer: "மறுப்பு"
+                    support: {
+                        title: "ஆதரவு இணைப்புகள்",
+                        help: "உதவி",
+                        privacy: "தனியுரிமை",
+                        cookies: "குக்கீகள்",
+                        accessibility: "அணுகல்தன்மை அறிக்கை",
+                        contact: "தொடர்பு",
+                        terms: "விதிமுறைகள் மற்றும் நிபந்தனைகள்"
                     },
-                    copyright: "© 2024 நோர்வாலிஸ் அரசு. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை."
+                    meta: {
+                        crown: "கிரீடம் பதிப்புரிமை",
+                        govtName: "நோர்வாலிஸ் அரசு",
+                        license: "அனைத்து உள்ளடக்கமும் கிடைக்கும்",
+                        licenseLink: "திறந்த அரசு உரிமம் v3.0",
+                        followUs: "எங்களைப் பின்தொடரவும்:"
+                    },
+                    social: {
+                        facebook: "Facebook இல் எங்களைப் பின்தொடரவும்",
+                        twitter: "Twitter இல் எங்களைப் பின்தொடரவும்",
+                        linkedin: "LinkedIn இல் எங்களைப் பின்தொடரவும்",
+                        youtube: "YouTube இல் எங்களைப் பின்தொடரவும்"
+                    }
                 }
             }
         };

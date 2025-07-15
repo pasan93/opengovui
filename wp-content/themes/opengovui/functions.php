@@ -708,4 +708,12 @@ function opengovui_populate_page() {
     <?php
 }
 
+// Customize WordPress Admin Footer Text
+function opengovui_admin_footer_text($footer_text) {
+    return sprintf(
+        'Made with <a href="https://wordpress.org/" target="_blank">WordPress</a> in Sri Lanka 🇱🇰 by <a href="https://highflyerglobal.com" target="_blank">HighFlyer</a>'
+    );
+}
+add_filter('admin_footer_text', 'opengovui_admin_footer_text');
+
 ?> 

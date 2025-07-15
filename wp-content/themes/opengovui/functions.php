@@ -796,4 +796,11 @@ function opengovui_admin_footer_text($footer_text) {
 }
 add_filter('admin_footer_text', 'opengovui_admin_footer_text');
 
+// Remove WordPress logo from admin bar
+function opengovui_remove_wp_logo_admin_bar() {
+    global $wp_admin_bar;
+    $wp_admin_bar->remove_menu('wp-logo');
+}
+add_action('wp_before_admin_bar_render', 'opengovui_remove_wp_logo_admin_bar');
+
 ?> 
